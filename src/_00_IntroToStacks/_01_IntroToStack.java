@@ -13,7 +13,7 @@ Stack<Double> d = new Stack<Double>();
         // 2. Use a loop to push 100 random doubles between 0 and 100 to the Stack.
 Random r = new Random();
 for (int i = 0; i <= 100; i++) {
-	d.push((double) r.nextInt(100));
+	d.push( r.nextDouble()*100);
 }
         // 3. Ask the user to enter in two numbers between 0 and 100, inclusive. 
 String input = JOptionPane.showInputDialog("Pick 2 numbers between 0 and 100, inclusive");
@@ -21,15 +21,20 @@ String input = JOptionPane.showInputDialog("Pick 2 numbers between 0 and 100, in
         //    between the two numbers entered by the user, print it to the screen.
 String regEx = "[a-zA-Z,\\s]";
 StringBuilder finalInput = new StringBuilder(input.replaceAll(regEx, ""));
-finalInput.insert(0, '[');
-finalInput.insert(2, '-');
-finalInput.append(']');
-Double s;
+finalInput.insert(0, "[{");
+finalInput.insert(1, '^');
+finalInput.insert(4, "}-{");
+//finalInput.append('.');
+//finalInput.append("\\s");
+finalInput.append("}]");
+System.out.println(finalInput);
+StringBuilder s = new StringBuilder();
 for (int i = 0; i < d.size(); i++) {
-	s = d.pop();
-	
+
+	s.append(" "+d.pop().toString());
 }
 
+System.out.println(s.toString().replaceAll(finalInput.toString(), ""));
         // EXAMPLE:
         // NUM 1: 65
         // NUM 2: 75
