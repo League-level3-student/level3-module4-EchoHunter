@@ -21,20 +21,21 @@ String input = JOptionPane.showInputDialog("Pick 2 numbers between 0 and 100, in
         //    between the two numbers entered by the user, print it to the screen.
 String regEx = "[a-zA-Z,\\s]";
 StringBuilder finalInput = new StringBuilder(input.replaceAll(regEx, ""));
-finalInput.insert(0, "[{");
-finalInput.insert(1, '^');
-finalInput.insert(4, "}-{");
-//finalInput.append('.');
-//finalInput.append("\\s");
-finalInput.append("}]");
-System.out.println(finalInput);
-StringBuilder s = new StringBuilder();
-for (int i = 0; i < d.size(); i++) {
-
-	s.append(" "+d.pop().toString());
+finalInput.insert(finalInput.length()/2, " ");
+String[] s = finalInput.toString().split(" ");
+Double[] numS = new Double[2];
+numS[0] = Double.parseDouble(s[0]);
+numS[1] = Double.parseDouble(s[1]);
+Double popped;
+for (int i = 0; i <= 100; i++) {
+	popped = d.pop();
+	if ((popped > numS[0])&&(popped<numS[1])) {
+		System.out.print(popped + " ");
+	}
 }
+    }
 
-System.out.println(s.toString().replaceAll(finalInput.toString(), ""));
+
         // EXAMPLE:
         // NUM 1: 65
         // NUM 2: 75
@@ -49,4 +50,4 @@ System.out.println(s.toString().replaceAll(finalInput.toString(), ""));
         // 66.47984807
         // 74.12121224
     }
-}
+
