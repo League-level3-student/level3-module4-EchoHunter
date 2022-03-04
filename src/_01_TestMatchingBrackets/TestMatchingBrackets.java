@@ -9,17 +9,11 @@ public class TestMatchingBrackets {
     	boolean returned = false;
     	int matchCount = 0;
     	for (int i = b.length(); i > 0; i--) {
-    		if(b.charAt(i) == '{') {
-    			matchCount++;
-    			for (int j = i; j < b.length(); j++) {
-					if (b.charAt(j)=='}') {
-						matchCount--;
-						break;
-					}
-				}
-    		}
-    		
-}
+    		if ((b.charAt(i) == '{')&&(b.charAt(i++) == '}')) {
+			}
+				
+    	
+    	}
     	if (matchCount == 0) {
 			returned = true;
 		}
