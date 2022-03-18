@@ -1,4 +1,9 @@
 package _02_IntroToQueues;
+
+import java.util.ArrayDeque;
+import java.util.Random;
+import java.util.Stack;
+
 /* 
  * OBJECTIVE:
  * 1. Push 100 double values onto a Stack.
@@ -34,24 +39,49 @@ public class _01_IntroToQueue {
     public static void main(String[] args) {
         // 1. Create a Stack of Doubles using the Stack class
         //    Note: you have to use the capitalized Double and not double
-
+Stack<Double> dStack = new Stack();
+Random rand = new Random();
         // 2. Use a loop to add 100 random doubles between 0 and 100 to the Stack
-
+for (int i = 0; i < 101; i++) {
+	dStack.add(rand.nextDouble()*100);
+}
         // 3. Create a Queue of Doubles using the ArrayDeque class
         //    Note: you have to use the capitalized Double and not double
-
+ArrayDeque<Double>qDoubles = new ArrayDeque();
         // 4. Pop off 5 elements from the Stack and add them to the Queue 
-
+for (int i = 0; i < 6; i++) {
+	qDoubles.add(dStack.pop());
+}
         // 5. Print and remove a random number of elements, from 1 to 5 elements,
         //    from the front of the Queue. Example:
         //    "removing 3 elements from Queue: 25 57 2"
-
+int loopTime = rand.nextInt(5)+1;
+for (int j = 0; j < loopTime; j++) {
+	if (j == 0) {
+	System.out.println("Removing " + loopTime + " elements from Queue for the first time: ");
+	}
+	System.out.print(qDoubles.remove() + " \n");
+	}
         // 6. Pop off as many elements from the stack to fill the Queue with 5
         //    elements. If there aren't enough elements in the Stack to fill the 
         //    queue, fill the queue as much as possible. 
 
         // 7. Loop until there are no more elements in either the Stack or Queue
         //    and all the elements are printed
-        
+while (dStack.size()>0) {
+	while (qDoubles.size() != 5) {
+		if (dStack.size()>0) {
+			qDoubles.add(dStack.pop());
+		}
+		}
+
+loopTime = rand.nextInt(5)+1;
+for (int j = 0; j < loopTime; j++) {
+	if (j == 0) {
+	System.out.println("Removing " + loopTime + " elements from Queue: ");
+	}
+	System.out.print(qDoubles.remove() + " \n");
+	}
+    }
     }
 }
