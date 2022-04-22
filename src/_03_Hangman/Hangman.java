@@ -26,7 +26,7 @@ public void run() {
 			guesses = 10;
 			hWHolder = "";
 			hangWord.clear();
-		
+			System.out.println(hangWord.size());
 		panel = new JPanel();
 		frame = new JFrame();
 		label = new JLabel();
@@ -45,6 +45,7 @@ public void run() {
 			hangWord.add(placeHolder);
 		}
 	}
+	System.out.println(hangWord.size());
 	while ((guesses > 0)||(hangWord.size() >0)) {
 		if (!blankHWHolder.toString().contains("_")) {
 			startNewGame();
@@ -58,6 +59,7 @@ public void run() {
 		}
 		else if(yn == 0) {
 			repeat = true;
+			frame.removeAll();
 			frame.setVisible(false);
 		}
 		
@@ -70,6 +72,7 @@ public void run() {
 	}
 	else if(yn == 0) {
 		repeat = true;
+		frame.removeAll();
 		frame.setVisible(false);
 	}
 	}
