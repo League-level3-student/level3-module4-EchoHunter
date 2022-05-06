@@ -23,9 +23,10 @@ public class MazeMaker {
         //    This will be the starting point. Then select a random cell along
         //    the opposite wall and remove its exterior wall. This will be the
         //    finish line.
-        
+        maze.cellGroups[0][randGen.nextInt(cols)].setWestWall(false);
+        maze.cellGroups[rows][randGen.nextInt(cols)].setEastWall(false);
         // 2. select a random cell in the maze to start 
-        
+        selectNextPath(maze.cellGroups[randGen.nextInt(rows)][randGen.nextInt(cols)]);
         // 3. call the selectNextPath method with the randomly selected cell
 
         return maze;
@@ -34,11 +35,45 @@ public class MazeMaker {
     // 4. Complete the selectNextPathMethod
     private static void selectNextPath(Cell currentCell) {
         // A. SET currentCell as visited
-
+currentCell.setBeenVisited(true);
         // B. check for unvisited neighbors using the cell
-
+Boolean[] neighborCheck = new Boolean[8];
+ArrayList<Integer> trues = new ArrayList<Integer>();
+for (int i = 0; i < neighborCheck.length; i++) {
+	if ((!maze.cellGroups[currentCell.getRow()+1][currentCell.getCol()+1].hasBeenVisited())||
+		(!maze.cellGroups[currentCell.getRow()-1][currentCell.getCol()+1].hasBeenVisited())||
+		(!maze.cellGroups[currentCell.getRow()+1][currentCell.getCol()-1].hasBeenVisited())||
+		(!maze.cellGroups[currentCell.getRow()-1][currentCell.getCol()-1].hasBeenVisited())||
+		(!maze.cellGroups[currentCell.getRow()][currentCell.getCol()+1].hasBeenVisited())||
+		(!maze.cellGroups[currentCell.getRow()+1][currentCell.getCol()].hasBeenVisited())||
+		(!maze.cellGroups[currentCell.getRow()-1][currentCell.getCol()].hasBeenVisited())||
+		(!maze.cellGroups[currentCell.getRow()][currentCell.getCol()-1].hasBeenVisited())) {
+		neighborCheck[i] = true;
+		trues.add(i);
+	}
+	else {
+		neighborCheck[i] = false;
+	}
+}
         // C. if has unvisited neighbors,
-
+int numStor = trues.get(randGen.nextInt(trues.size()));
+if (numStor == 0) {
+	uncheckedCells.push(maze.cellGroups[currentCell.getRow()+1][currentCell.getCol()+1]);
+}else if(numStor == 1) {
+	uncheckedCells.push(maze.cellGroups[currentCell.getRow()-1][currentCell.getCol()+1]);
+}else if(numStor == 2) {
+	uncheckedCells.push(maze.cellGroups[currentCell.getRow()+1][currentCell.getCol()-1]);
+}else if(numStor == 3) {
+	uncheckedCells.push(maze.cellGroups[currentCell.getRow()-1][currentCell.getCol()-1]);
+}else if(numStor == 4) {
+	uncheckedCells.push(maze.cellGroups[currentCell.getRow()][currentCell.getCol()+1]);
+}else if(numStor == 5) {
+	uncheckedCells.push(maze.cellGroups[currentCell.getRow()+1][currentCell.getCol()]);
+}else if(numStor == 6) {
+	uncheckedCells.push(maze.cellGroups[currentCell.getRow()][currentCell.getCol()-1]);
+}else if(numStor == 7) {
+	uncheckedCells.push(maze.cellGroups[currentCell.getRow()-1][currentCell.getCol()]);
+}
         // C1. select one at random.
 
         // C2. push it to the stack
